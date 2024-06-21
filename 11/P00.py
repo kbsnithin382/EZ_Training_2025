@@ -1,4 +1,4 @@
-# top, right, bottom, left views of a binary tree using recursion
+# top, right, bottom, left views of a binary tree using queues
 
 class Node:
     def __init__(self, val):
@@ -9,6 +9,7 @@ class Node:
 class BST:
     def __init__(self):
         self.root = None
+
     def add(self, val):
         if self.root == None:
             self.root = Node(val)
@@ -25,6 +26,7 @@ class BST:
                         return
                     recur(root.right, val)
             recur(self.root, val)
+
     def traverse(self):
         def inorder(root):
             if root == None:
@@ -53,64 +55,84 @@ class BST:
         print("postorder:", end=' ')
         postorder(self.root)
         print()
+    
     def top_view(self):
-        def recur(root, v, dic):
-            if root == None:
-                return
-            recur(root.left, v-1, dic)
-            recur(root.right, v+1, dic)
-            dic[v] = root.val
+        if self.root == None:
+            return
         dic = {}
-        recur(self.root, 0, dic)
+        queue = [(self.root, 0)]
+        while queue:
+            node, vlevel = queue.pop(0)
+            if node.left:
+                queue.append((node.left, vlevel-1))
+            if node.right:
+                queue.append((node.right, vlevel+1))
+            if vlevel not in dic:
+                dic[vlevel] = node
         print("top view:", end=' ')
-        for i in dic:
-            print(dic[i], end=' ')
+        for i in sorted(list(dic.keys())):
+            print(dic[i].val, end=' ')
         print()
+            
     def bottom_view(self):
-        def recur(root, v, dic):
-            if root == None:
-                return
-            dic[v] = root.val
-            recur(root.right, v+1, dic)
-            recur(root.left, v-1, dic)
+        if self.root == None:
+            return
         dic = {}
-        recur(self.root, 0, dic)
+        queue = [(self.root, 0)]
+        while queue:
+            node, vlevel = queue.pop(0)
+            if node.left:
+                queue.append((node.left, vlevel-1))
+            if node.right:
+                queue.append((node.right, vlevel+1))
+            dic[vlevel] = node
         print("bottom view:", end=' ')
-        for i in dic:
-            print(dic[i], end=' ')
+        for i in sorted(list(dic.keys())):
+            print(dic[i].val, end=' ')
         print()
+    
     def left_view(self):
-        def recur(root, h, dic):
-            if root == None:
-                return
-            recur(root.right, h+1, dic)
-            dic[h] = root.val
-            recur(root.left, h+1, dic)
+        if self.root == None:
+            return
         dic = {}
-        recur(self.root, 0, dic)
+        queue = [(self.root, 0)]
+        while queue:
+            node, hlevel = queue.pop(0)
+            if node.left:
+                queue.append((node.left, hlevel+1))
+            if node.right:
+                queue.append((node.right, hlevel+1))
+            if hlevel not in dic:
+                dic[hlevel] = node
         print("left view:", end=' ')
-        for i in dic:
-            print(dic[i], end=' ')
+        for i in sorted(list(dic.keys())):
+            print(dic[i].val, end=' ')
         print()
+    
     def right_view(self):
-        def recur(root, h, dic):
-            if root == None:
-                return
-            recur(root.left, h+1, dic)
-            dic[h] = root.val
-            recur(root.right, h+1, dic)
+        if self.root == None:
+            return
         dic = {}
-        recur(self.root, 0, dic)
+        queue = [(self.root, 0)]
+        while queue:
+            node, hlevel = queue.pop(0)
+            if node.left:
+                queue.append((node.left, hlevel+1))
+            if node.right:
+                queue.append((node.right, hlevel+1))
+            dic[hlevel] = node
         print("right view:", end=' ')
-        for i in dic:
-            print(dic[i], end=' ')
+        for i in sorted(dic.keys()):
+            print(dic[i].val, end=' ')
         print()
 
 bst = BST()
+
 print("enter values:", end=' ')
 arr = list(map(int, input().split()))
 for i in arr:
     bst.add(i)
+
 bst.traverse()
 bst.top_view()
 bst.bottom_view()
