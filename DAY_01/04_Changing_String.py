@@ -1,3 +1,4 @@
+# change all vowels to uppercase and all consonants to lowercase
 
 s = list(input())
 

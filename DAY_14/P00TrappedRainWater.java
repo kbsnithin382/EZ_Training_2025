@@ -1,4 +1,4 @@
-// trapped rain water
+// trapped rain water (LeetCode)
 
 import java.util.Scanner;
 

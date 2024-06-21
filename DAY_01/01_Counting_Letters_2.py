@@ -1,3 +1,5 @@
+# given a string => aaabbcd
+# output => a3b2c1d1
 
 str1 = input()
 

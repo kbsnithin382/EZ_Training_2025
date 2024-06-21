@@ -1,3 +1,4 @@
+# print sums of even, odd, decimal numbers
 
 s = list(map(float, input().split()))
 

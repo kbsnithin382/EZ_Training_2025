@@ -1,3 +1,10 @@
+"""
+input: 4
+____a____
+___bab___
+__cbabc__
+_dcbabcd_
+"""
 
 n = int(input())
 

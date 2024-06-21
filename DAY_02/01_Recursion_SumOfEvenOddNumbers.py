@@ -1,4 +1,5 @@
-# length of lists are equal
+# print sums of even, odd numbers using Recursion
+# (length of lists are equal)
 
 def even_odd_sum(i, s1, s2):
     if i == len(a):

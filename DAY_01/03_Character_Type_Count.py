@@ -1,3 +1,5 @@
+# count upper-case, lower-case vowels and consonants
+# also count number of digits and special characters
 
 s = input()
 

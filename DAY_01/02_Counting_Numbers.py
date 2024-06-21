@@ -1,3 +1,4 @@
+# count number of occurances of each number
 
 l = list(map(int, input().split()))
 

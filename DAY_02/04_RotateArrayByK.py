@@ -1,3 +1,4 @@
+# rotate the array to the right by k
 
 s = input()
 k = int(input()) % 26

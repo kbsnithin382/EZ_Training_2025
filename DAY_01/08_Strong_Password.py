@@ -1,3 +1,13 @@
+"""
+a strong password has atleast:
+one digit,
+one uppercase letter,
+one lowercase letter,
+one special character,
+and is of length >=8
+
+print the minimum number of characters to be added to make a password strong
+"""
 
 upper = False
 lower = False
